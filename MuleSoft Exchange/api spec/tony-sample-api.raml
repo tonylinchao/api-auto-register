@@ -1,0 +1,163 @@
+#%RAML 1.0
+title: Tony Sample API
+
+/tony/customers:
+  displayName: /customers
+  post:
+    description: Create customers contact 2
+    displayName: post
+    body:
+      application/json:
+        type: contact
+        example:
+          strict: true
+          value:
+            email: john.chan@hkt.com
+            postalAddress:
+              city: Hong Kong
+              country: Hong Kong
+              postalCode: "00000"
+              street: 39 Queens Road Central
+            hkid: provider|0123456789
+            lastName: Chan
+            firstName: John
+            deliveryAddress:
+              city: Hong Kong
+              country: Hong Kong
+              postalCode: "00000"
+              street: 168 Lockhart Road
+            phone: +852 6688 1688
+    responses:
+      "200":
+        description: Added customer(s) successfully
+        body:
+          application/json:
+            example:
+              strict: true
+              value:
+                id: sfdc|1234567890
+                hkid: provider|0123456789
+            type: object
+  /tony/{hkid}:
+    displayName: /customers/{hkid}
+    get:
+      description: "Return customer information by customer HKID "
+      displayName: get
+      responses:
+        200:
+          body:
+            application/json:
+              type: contact
+              example:
+                strict: true
+                value:
+                  email: john.chan@hkt.com
+                  postalAddress:
+                    city: Hong Kong
+                    country: Hong Kong
+                    postalCode: "00000"
+                    street: 39 Queens Road Central
+                  hkid: provider|0123456789
+                  lastName: Chan
+                  firstName: John
+                  deliveryAddress:
+                    city: Hong Kong
+                    country: Hong Kong
+                    postalCode: "00000"
+                    street: 168 Lockhart Road
+                  phone: +852 6688 1688
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Customer not found"}
+        500:
+          body:
+            application/json:
+              example: |
+                {"message": "Internal server error" }
+    put:
+      description: Update customer contact by HKID
+      displayName: put
+      responses:
+        "200":
+          description: Updated customer contact successfully
+          body:
+            application/json:
+              example:
+                strict: true
+                value:
+                  id: sfdc|1234567890
+                  hkid: provider|0123456789
+              type: object
+      body:
+        application/json:
+          type: contact
+          example:
+            strict: true
+            value:
+              email: john.chan@hkt.com
+              postalAddress:
+                city: Hong Kong
+                country: Hong Kong
+                postalCode: "00000"
+                street: 39 Queens Road Central
+              hkid: provider|0123456789
+              lastName: Chan
+              firstName: John
+              deliveryAddress:
+                city: Hong Kong
+                country: Hong Kong
+                postalCode: "00000"
+                street: 168 Lockhart Road
+              phone: +852 6688 1688
+    uriParameters:
+      hkid:
+        example: R1234567
+        description: Sample HKID
+        type: string
+types:
+  address:
+    description: Address datatype
+    properties:
+      street?:
+        description: Street 
+        example: 168 Lockhart Road
+        type: string
+      city?:
+        description: City
+        example: Hong Kong
+        type: string
+      postalCode?:
+        description: Postal Code
+        example: "00000"
+        type: string
+      country?:
+        description: Country
+        example: Hong Kong
+        type: string
+  contact:
+    description: Contact datatype
+    properties:
+      id?:
+        type: string
+      hkid?:
+        description: HK ID is used as customer ID
+        example: R1234567
+        type: string
+      firstName?:
+        example: Joe
+        type: string
+      lastName:
+        example: Cheng
+        type: string
+      phone?:
+        example: +852 6666 8888
+        type: string
+      email?:
+        example: joe.cheng@hkt.com
+        type: string
+      deliveryAddress?:
+        type: address
+      postalAddress?:
+        type: address

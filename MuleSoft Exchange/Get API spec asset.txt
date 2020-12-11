@@ -1,0 +1,2 @@
+curl --location --request GET 'https://anypoint.mulesoft.com/exchange/api/v1/assets/c484da51-46e6-4745-8e69-ff960eff55a2/tony-sample-api' \
+--header 'Cookie: XSRF-TOKEN=6KUrlU1w-PRrKKiTJhQGxNSsi-fswyBjrU-M; _csrf=QMr8VDCKjbPa1mWOXuxFc_Nt; mulesoft.sess=eyJpZCI6Ilo0cl9OZVc1UU1jZ3FoR2Via0hXQldqRTVwa1V6T0RYIiwicGFzc3BvcnQiOnsidXNlciI6eyJ1c2VyX2lkIjoiYzFiNTRjMzQtOWFhNS00NDRkLTllOGItYmNiNWJlZGVmZDA2In19LCJlbGV2YXRlZCI6eyJleHBpcmVzX2F0IjoxNjA3NzAwNzQ3fX0=; mulesoft.sess.sig=cGbcyjqhHLRH2uB1PwOMWmk9dI0'

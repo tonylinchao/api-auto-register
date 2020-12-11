@@ -1,0 +1,12 @@
+curl --location --request POST 'https://anypoint.mulesoft.com/exchange/api/v1/assets' \
+--header 'Authorization: Bearer 4fdc0501-ddba-41dc-b4a0-a2ac986bb083' \
+--header 'Cookie: XSRF-TOKEN=6KUrlU1w-PRrKKiTJhQGxNSsi-fswyBjrU-M; _csrf=QMr8VDCKjbPa1mWOXuxFc_Nt; mulesoft.sess=eyJpZCI6Ilo0cl9OZVc1UU1jZ3FoR2Via0hXQldqRTVwa1V6T0RYIiwicGFzc3BvcnQiOnsidXNlciI6eyJ1c2VyX2lkIjoiYzFiNTRjMzQtOWFhNS00NDRkLTllOGItYmNiNWJlZGVmZDA2In19LCJlbGV2YXRlZCI6eyJleHBpcmVzX2F0IjoxNjA3NzAwNzQ3fX0=; mulesoft.sess.sig=cGbcyjqhHLRH2uB1PwOMWmk9dI0' \
+--form 'name="tony-sample-api"' \
+--form 'assetId="tony-sample-api"' \
+--form 'version="1.0.2"' \
+--form 'classifier="raml"' \
+--form 'apiVersion="v1"' \
+--form 'groupId="c484da51-46e6-4745-8e69-ff960eff55a2"' \
+--form 'organizationId="c484da51-46e6-4745-8e69-ff960eff55a2"' \
+--form 'asset=@"/E:/Dev/HKT/mulesoft-platform-apis/tony-sample-api/tony-sample-api.raml"' \
+--form 'main="tony-sample-api.raml"'

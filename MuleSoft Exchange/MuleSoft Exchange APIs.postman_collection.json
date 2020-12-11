@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "f89a8161-4b89-4356-b9d7-cee4936a93cc",
+		"name": "MuleSoft Exchange APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enquiry Mule Exchange API detail ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets/c484da51-46e6-4745-8e69-ff960eff55a2/tony-sample-api",
+					"protocol": "https",
+					"host": [
+						"anypoint",
+						"mulesoft",
+						"com"
+					],
+					"path": [
+						"exchange",
+						"api",
+						"v1",
+						"assets",
+						"c484da51-46e6-4745-8e69-ff960eff55a2",
+						"tony-sample-api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create or update API spec asset",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4fdc0501-ddba-41dc-b4a0-a2ac986bb083"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "tony-sample-api",
+							"type": "text"
+						},
+						{
+							"key": "assetId",
+							"value": "tony-sample-api",
+							"type": "text"
+						},
+						{
+							"key": "version",
+							"value": "1.0.2",
+							"type": "text"
+						},
+						{
+							"key": "classifier",
+							"value": "raml",
+							"type": "text"
+						},
+						{
+							"key": "apiVersion",
+							"value": "v1",
+							"type": "text"
+						},
+						{
+							"key": "groupId",
+							"value": "c484da51-46e6-4745-8e69-ff960eff55a2",
+							"type": "text"
+						},
+						{
+							"key": "organizationId",
+							"value": "c484da51-46e6-4745-8e69-ff960eff55a2",
+							"type": "text"
+						},
+						{
+							"key": "asset",
+							"type": "file",
+							"src": "/E:/Dev/HKT/mulesoft-platform-apis/tony-sample-api/tony-sample-api.raml"
+						},
+						{
+							"key": "main",
+							"value": "tony-sample-api.raml",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets",
+					"protocol": "https",
+					"host": [
+						"anypoint",
+						"mulesoft",
+						"com"
+					],
+					"path": [
+						"exchange",
+						"api",
+						"v1",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get access token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ed9b5ad0-47ad-4342-ab02-6bc512ce1bc8",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3e26761-6734-4ee3-b731-81f9a24b6242",
+						"exec": [
+							"const jar = pm.cookies.jar();",
+							"jar.clear(pm.request.url, function (error) {",
+							"  console.log(\"Clear Cookies\");",
+							"});",
+							"",
+							"",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"api-auth-header\", \"Bearer \" + data.access_token);",
+							"",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "{{anypoint-password}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{anypoint-username}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://anypoint.mulesoft.com/accounts/login",
+					"protocol": "https",
+					"host": [
+						"anypoint",
+						"mulesoft",
+						"com"
+					],
+					"path": [
+						"accounts",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

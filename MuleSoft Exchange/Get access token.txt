@@ -1,0 +1,4 @@
+curl --location --request POST 'https://anypoint.mulesoft.com/accounts/login' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'password={username}' \
+--data-urlencode 'username={password}'
