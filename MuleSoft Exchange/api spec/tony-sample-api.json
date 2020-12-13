@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tony Sample API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/tony/customers": {
+      "x-amf-displayName": "/customers",
+      "post": {
+        "operationId": "post",
+        "description": "Create customers contact 2",
+        "parameters": [
+          {
+            "x-amf-mediaType": "application/json",
+            "in": "body",
+            "name": "generated",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added customer(s) successfully",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "example": {
+                "strict": true,
+                "value": {
+                  "id": "sfdc|1234567890",
+                  "hkid": "provider|0123456789"
+                }
+              },
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    },
+    "/tony/customers/tony/{hkid}": {
+      "x-amf-displayName": "/customers/{hkid}",
+      "get": {
+        "operationId": "get",
+        "description": "Return customer information by customer HKID ",
+        "parameters": [
+          {
+            "name": "hkid",
+            "description": "Sample HKID",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          },
+          "404": {
+            "description": "",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "example": {
+                "message": "Customer not found"
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "example": {
+                "message": "Internal server error"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "put",
+        "description": "Update customer contact by HKID",
+        "parameters": [
+          {
+            "name": "hkid",
+            "description": "Sample HKID",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "x-amf-mediaType": "application/json",
+            "in": "body",
+            "name": "generated",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated customer contact successfully",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "example": {
+                "strict": true,
+                "value": {
+                  "id": "sfdc|1234567890",
+                  "hkid": "provider|0123456789"
+                }
+              },
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "contact": {
+      "description": "Contact datatype",
+      "example": {
+        "strict": true,
+        "value": {
+          "email": "john.chan@hkt.com",
+          "postalAddress": {
+            "city": "Hong Kong",
+            "country": "Hong Kong",
+            "postalCode": "00000",
+            "street": "39 Queens Road Central"
+          },
+          "hkid": "provider|0123456789",
+          "lastName": "Chan",
+          "firstName": "John",
+          "deliveryAddress": {
+            "city": "Hong Kong",
+            "country": "Hong Kong",
+            "postalCode": "00000",
+            "street": "168 Lockhart Road"
+          },
+          "phone": "+852 6688 1688"
+        }
+      },
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "lastName"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "hkid": {
+          "description": "HK ID is used as customer ID",
+          "example": "R1234567",
+          "type": "string"
+        },
+        "firstName": {
+          "example": "Joe",
+          "type": "string"
+        },
+        "lastName": {
+          "example": "Cheng",
+          "type": "string"
+        },
+        "phone": {
+          "example": "+852 6666 8888",
+          "type": "string"
+        },
+        "email": {
+          "example": "joe.cheng@hkt.com",
+          "type": "string"
+        },
+        "deliveryAddress": {
+          "$ref": "#/definitions/address"
+        },
+        "postalAddress": {
+          "$ref": "#/definitions/address"
+        }
+      }
+    },
+    "address": {
+      "description": "Address datatype",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "street": {
+          "description": "Street",
+          "example": "168 Lockhart Road",
+          "type": "string"
+        },
+        "city": {
+          "description": "City",
+          "example": "Hong Kong",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "Postal Code",
+          "example": "00000",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country",
+          "example": "Hong Kong",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
